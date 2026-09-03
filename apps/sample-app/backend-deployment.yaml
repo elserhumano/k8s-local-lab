@@ -22,7 +22,7 @@ spec:
       containers:
         - name: api
           #Swapped to a stable, lightweight web server to prevent Docker socket panic loops
-          image: nginx:1.27-alpine 
+          image: nginx:1.27-alpine
           ports:
             - containerPort: 80 #Nginx default port
               name: http
