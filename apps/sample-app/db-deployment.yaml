@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:16-alpine # Light and secure image choice
+          image: postgres:16-alpine #Light and secure image choice
           ports:
             - containerPort: 5432
               name: dbport
