@@ -6,8 +6,8 @@ kind: Kustomization
 namespace: sample-app
 
 resources:
-  - configmap.yaml
-  - secrets.yaml
+  - namespace.yaml
+  - configmap-secrets.yaml
   - db-deployment.yaml
   - backend-deployment.yaml
 # Pro Tip: Kustomize can generate unique hashes for configmaps to trigger automatic deployment rollouts

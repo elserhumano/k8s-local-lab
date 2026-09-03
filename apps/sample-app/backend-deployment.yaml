@@ -21,9 +21,11 @@ spec:
     spec:
       containers:
         - name: api
-          image: testcontainers/ryuk:0.8.1 #Standard lightweight container mockup for connectivity tests
+          #Swapped to a stable, lightweight web server to prevent Docker socket panic loops
+          image: nginx:1.27-alpine 
           ports:
-            - containerPort: 8080
+            - containerPort: 80 #Nginx default port
+              name: http
           env:
             - name: DB_HOST
               value: "sample-db-service"
@@ -41,7 +43,7 @@ metadata:
 spec:
   ports:
     - port: 8080
-      targetPort: 8080
+      targetPort: 80 #Routes service port 8080 into container port 80
   selector:
     app: sample-app
     tier: backend
