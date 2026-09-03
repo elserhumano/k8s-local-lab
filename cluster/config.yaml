@@ -1,3 +1,4 @@
+---
 apiVersion: k3d.io/v1alpha5
 kind: Simple
 metadata:
@@ -21,4 +22,3 @@ options:
       - arg: --disable=traefik # Disabling default Traefik to manually install NGINX Ingress or Istio later
         nodeFilters:
           - server:*
-
