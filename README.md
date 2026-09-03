@@ -1,5 +1,8 @@
 # Kubernetes Local Laboratory (k3d + WSL2)
 
+[![Continuous Integration - Code Quality](https://github.com/elserhumano/k8s-local-lab/actions/workflows/ci.yaml/badge.svg)](https://github.com/elserhumano/k8s-local-lab/actions/workflows/ci.yaml)
+
+
 This repository contains the blueprints and automation scripts to bootstrap a production-like, multi-node **Kubernetes Local Laboratory** running on **Windows 11 (via WSL2)** using **k3d**. It is designed to serve as a high-performance sandbox for CNCF ecosystem tools, GitOps workflows, and Platform Engineering architecture experiments.
 
 ## 📐 Architecture Overview
@@ -113,3 +116,13 @@ kubectl get all -n sample-app
 # Inspect secure environment injection from Secrets
 kubectl describe deployment sample-backend -n sample-app | grep -A 5 Environment
 ```
+
+---
+
+## 🧪 Continuous Integration & Quality Gates
+
+To enforce Enterprise GitOps standards, this repository integrates an automated **CI Pipeline via GitHub Actions** (`.github/workflows/ci.yaml`). Every push or pull request triggers static analysis checks to guarantee code quality before any infrastructure component hits the environment:
+
+- **YAML Validation (`yamllint`):** Scans all Kustomize configurations and Kubernetes manifests to prevent indentation failures or structural syntax errors.
+- **Shell Script Auditing (`shellcheck`):** Executes rigorous static testing on the provisioning scripts (`scripts/`) to intercept potential execution bugs, security vulnerabilities, or POSIX compliance drift.
+
