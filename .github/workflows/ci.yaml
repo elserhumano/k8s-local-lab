@@ -1,0 +1,37 @@
+name: Continuous Integration - Code Quality
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  lint-yaml:
+    name: Lint Kubernetes & Kustomize YAMLs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Yamllint
+        run: sudo apt-get update && sudo apt-get install -y yamllint
+
+      - name: Run Yamllint
+        # Validates all yaml files ignoring minor line-length warnings if preferred
+        run: |
+          yamllint -d "{extends: default, rules: {line-length: disable}}" apps/ cluster/
+
+  lint-scripts:
+    name: Lint Bash Automation Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        # Static analysis tool for shell scripts to prevent bugs and security flaws
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: 'scripts'
+
