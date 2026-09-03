@@ -7,8 +7,7 @@ This repository contains the blueprints and automation scripts to bootstrap a pr
 
 ## 📐 Architecture Overview
 
-```
-mermaid
+```mermaid
 graph TD
     subgraph Windows 11 Host
         WSL2[WSL2 Kernel Engine]
