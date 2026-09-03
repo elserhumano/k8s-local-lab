@@ -4,7 +4,7 @@
 set -e
 
 echo "🔍 Detecting OS distribution..."
-if [ -f /etc / os-release ]; then
+if [ -f /etc/os-release ]; then
     # ShellCheck directive to fix source path warning
     # shellcheck source=/dev/null
     ./etc/os-release
