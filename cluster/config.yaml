@@ -1,0 +1,24 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: platform-architect-lab
+servers: 1 # High Availability: 1 Control Plane node
+agents: 2  # Scalability: 2 Worker nodes for workload distribution
+image: rancher/k3s:v1.31.1-k3s1 # Pinning K3s version to ensure environment reproducibility
+ports:
+  - port: 8080:80 # Maps local port 8080 to K3d LoadBalancer HTTP port 80
+    nodeFilters:
+      - loadbalancer
+  - port: 8443:443 # Maps local port 8443 to K3d LoadBalancer HTTPS port 443
+    nodeFilters:
+      - loadbalancer
+options:
+  k3d:
+    wait: true
+    timeout: "360s"
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik # Disabling default Traefik to manually install NGINX Ingress or Istio later
+        nodeFilters:
+          - server:*
+
