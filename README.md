@@ -9,16 +9,16 @@ This repository contains the blueprints and automation scripts to bootstrap a pr
 
 ```mermaid
 graph TD
-    subgraph Windows 11 Host
+    subgraph "Windows 11 Host"
         WSL2[WSL2 Kernel Engine]
     end
 
-    subgraph WSL2 Environment (Ubuntu 24.04 / Rocky 9)
+    subgraph "WSL2 Environment (Ubuntu 24.04 / Rocky 9)"
         Docker[Docker Engine Daemon]
         k3d[k3d Cluster Orchestrator]
     end
 
-    subgraph k3d Virtual Cluster (platform-architect-lab)
+    subgraph "k3d Virtual Cluster (platform-architect-lab)"
         LB[k3d LoadBalancer / Port 8080 & 8443]
         Master[Control Plane Node: server-0]
         Worker1[Worker Node: agent-0]
@@ -30,6 +30,7 @@ graph TD
     Master --> Worker1
     Master --> Worker2
 ```
+
 
 ## 🛠️ Repository Structure
 
